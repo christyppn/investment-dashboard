@@ -30,15 +30,12 @@ jobs:
         run: |
           python sync_data.py
 
-      - name: Commit and push if changed
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config --global user.name 'GitHub Actions Bot'
-          git config --global user.email 'actions@github.com'
-          git add data/*.json
-          git diff --quiet && git diff --staged --quiet || (
-            git commit -m "Update investment data - $(date +'%Y-%m-%d %H:%M:%S UTC')" &&
-            git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
-          )
-``
+     - name: Commit and push if changed
+  run: |
+    git config --global user.name 'github-actions[bot]'
+    git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+    git add data/*.json
+    git diff --quiet && git diff --staged --quiet || (
+      git commit -m "Update investment data - $(date +'%Y-%m-%d %H:%M:%S UTC')" &&
+      git push
+    )
