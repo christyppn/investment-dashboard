@@ -30,12 +30,12 @@ jobs:
         run: |
           python sync_data.py
 
-     - name: Commit and push if changed
-  run: |
-    git config --global user.name 'github-actions[bot]'
-    git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-    git add data/*.json
-    git diff --quiet && git diff --staged --quiet || (
-      git commit -m "Update investment data - $(date +'%Y-%m-%d %H:%M:%S UTC')" &&
-      git push
-    )
+       - name: Commit and push if changed
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/*.json
+          git diff --quiet && git diff --staged --quiet || (
+            git commit -m "Update investment data - $(date +'%Y-%m-%d %H:%M:%S UTC')" &&
+            git push
+          )
